@@ -1,0 +1,257 @@
+/* Global Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+.post-image {
+    max-width: 100px; /* Adjust the size as needed */
+    max-height: 100px; /* Adjust the size as needed */
+    object-fit: cover; /* Ensure the image scales proportionally */
+}
+
+
+/* Root Variables */
+:root {
+    --cr-white: hsl(0, 9%, 2%);
+    --cr-concrete: hsl(0, 9%, 4%);
+    --cr-firefly: hsl(0, 0%, 100%);
+    --box-shadow-1: 0.3em 0 0.3em hsla(0, 0%, 0%, 0.15);
+    --font-primary: 'Poppins', sans-serif;
+    --trans-lin-1: 220ms linear;
+    --page-cr: var(--cr-white);
+    --page-bd: var(--cr-firefly);
+    --page-font: var(--font-primary);
+    --page-font-size: 1.025rem;
+    --nav-cr: var(--page-bd);
+    --nav-bd: var(--page-cr);
+    --nav-item-bd-hov: var(--cr-concrete);
+    --nav-wh: 3.125rem;
+    --main-title-font-size: 2rem;
+}
+
+/* Page Styles */
+.page {
+    color: var(--page-cr);
+    background: var(--page-bd);
+    display: grid;
+    grid-template-columns: 15em 1fr;
+    grid-template-areas: "nav main";
+    min-height: 100vh;
+    font-size: var(--page-font-size);
+    font-family: var(--page-font);
+}
+
+.page__nav {
+    grid-area: nav;
+}
+
+.page__main {
+    grid-area: main;
+    padding: 2em;
+}
+
+/* Logo Styles */
+.logo {
+    font-size: 2rem;
+    text-align: center;
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    background-image: linear-gradient(to right, rgb(219, 222, 28), rgb(219, 12, 12));
+    color: transparent;
+    -webkit-background-clip: text;
+    margin-bottom: 1em;
+}
+
+.nav {
+    transition: width var(--trans-lin-1);
+    color: var(--nav-cr);
+    background: var(--nav-bd);
+    position: relative;
+    width: 100%;
+    max-width: 15em;
+    overflow: hidden;
+    box-shadow: var(--box-shadow-1);
+}
+
+.nav__list {
+    font-size: 0.95rem;
+    background: var(--nav-item-bd-hov);
+}
+
+.nav__list_bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.nav__item {
+    padding: 0.5em 1em;
+}
+
+.nav__item:hover {
+    background-color: grey;
+    border-radius: 10px;
+}
+
+.nav__link {
+    color: inherit;
+    display: flex;
+    align-items: center;
+    padding-block: 0.8em;
+    text-decoration: none;
+}
+
+.nav__link-icon {
+    margin-right: 1em;
+    font-size: 1.25rem;
+}
+
+.nav__link-txt {
+    font-size: 1.25rem;
+}
+
+/* Chat Window Styles */
+.chat-window {
+    display: none;
+    background-color: var(--cr-concrete);
+    color: var(--cr-firefly);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-1);
+    width: 100%;
+    max-width: 500px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background-color: var(--cr-white);
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--cr-firefly);
+    border-radius: 10px 10px 0 0;
+}
+
+.chat-body {
+    flex-grow: 1;
+    padding: 1em;
+    overflow-y: auto;
+    background-color: var(--cr-concrete);
+}
+
+.message {
+    margin-bottom: 1em;
+    padding: 1em;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.message.received {
+    background-color: var(--cr-white);
+    color: var(--cr-concrete);
+    align-self: flex-start;
+}
+
+.message.sent {
+    background-color: var(--cr-firefly);
+    color: var(--cr-concrete);
+    align-self: flex-end;
+}
+
+.chat-footer {
+    padding: 1em;
+    background-color: var(--cr-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 10px 10px;
+}
+
+.chat-footer input {
+    width: 80%;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid var(--cr-firefly);
+}
+
+.chat-footer .send-btn {
+    padding: 0.5em 1em;
+    background-color: var(--cr-concrete);
+    color: var(--cr-firefly);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-footer .send-btn:hover {
+    background-color: grey;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--cr-concrete);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .page {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "nav"
+            "main";
+    }
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        flex-direction: row;
+    }
+
+    .nav__link-txt {
+        display: none;
+    }
+
+    .nav__list {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .nav__list_bottom {
+        position: relative;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .nav__item {
+        padding: 1em 0.5em;
+        flex: 1;
+        text-align: center;
+    }
+
+    .nav__link-icon {
+        margin: 0;
+    }
+
+    .chat-window {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+    }
+}
